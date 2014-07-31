@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+  
+<hibernate-configuration>   
+    
+    <session-factory>  
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>  
+        <property name="hibernate.connection.username">svs</property>  
+        <property name="hibernate.connection.password">pass</property>  
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/svs_console</property>  
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>  
+        <property name="hibernate.show_sql">true</property>   
+        <property name="hibernate.connection.pool_size">1</property>  
+          
+        <mapping class="com.svs.entities.Customer"></mapping>
+        <mapping class="com.svs.entities.Item"></mapping>
+        <mapping class="com.svs.entities.OrderLine"></mapping>
+        <mapping class="com.svs.entities.Orders"></mapping>
+        <mapping class="com.svs.entities.User"></mapping>  
+  
+    </session-factory>  
+</hibernate-configuration>  
