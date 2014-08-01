@@ -48,5 +48,15 @@ public abstract class BaseEntity implements IBaseEntity {
 
 	protected BaseEntity() {
 	}
+	
+	protected void setBasicJsonData(final JSONObject jsonSource) throws JSONException
+	{
+		if (jsonSource.has("entityKey")) {
+			this.entityKey = jsonSource.getString("entityKey");
+		}
+		if (jsonSource.has("id")) {
+			this.id = jsonSource.getInt("id");
+		}
+	}
 
 }

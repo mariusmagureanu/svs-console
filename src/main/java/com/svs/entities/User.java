@@ -9,7 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 @Entity
-@Table
+@Table(name="user")
 @Inheritance(strategy = InheritanceType.JOINED)
 public final class User extends BaseEntity {
 
@@ -59,15 +59,10 @@ public final class User extends BaseEntity {
 
 	@Override
 	public void fromJSON(JSONObject jsonSource) throws JSONException {
+		this.setBasicJsonData(jsonSource);
 		this.firstName = jsonSource.getString("firstName");
 		this.lastName = jsonSource.getString("lastName");
 		this.userName = jsonSource.getString("userName");
 		this.password = jsonSource.getString("password");
-		if (jsonSource.has("entityKey")) {
-			this.entityKey = jsonSource.getString("entityKey");
-		}
-		if (jsonSource.has("id")) {
-			this.id = jsonSource.getInt("id");
-		}
 	}
 }

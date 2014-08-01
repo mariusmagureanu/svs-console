@@ -5,10 +5,11 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 @Entity
-@Table
+@Table(name="item")
 @Inheritance(strategy=InheritanceType.JOINED)
 public final class Item extends BaseEntity {
 
@@ -39,8 +40,10 @@ public final class Item extends BaseEntity {
 	}
 
 	@Override
-	public void fromJSON(JSONObject jsonSource) {
-		
+	public void fromJSON(final JSONObject jsonSource) throws JSONException {
+		this.setBasicJsonData(jsonSource);
+		this.description = jsonSource.getString("description");
+		this.name = jsonSource.getString("name");
 	}
 
 }

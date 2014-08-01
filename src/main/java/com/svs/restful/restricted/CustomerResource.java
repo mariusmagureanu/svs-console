@@ -1,16 +1,21 @@
 package com.svs.restful.restricted;
 
-import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.core.Response;
+
+import com.google.inject.Inject;
+import com.svs.entities.Customer;
+import com.svs.facade.interfaces.IBaseFacade;
+import com.svs.facade.interfaces.ICustomerFacade;
 
 
 @Path("/customer/")
-public class CustomerResource extends BaseResource {
+public final class CustomerResource extends BaseResource<Customer> {
 	
-	@GET
-	@Path("list")
-	public Response getCustomer(){
-		return Response.ok("gg\n").build();
+	@Inject
+	private ICustomerFacade customerFacade;
+
+	@Override
+	protected IBaseFacade<Customer> getBaseFacade() {
+		return this.customerFacade;
 	}
 }

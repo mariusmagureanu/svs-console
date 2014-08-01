@@ -5,11 +5,12 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 @Entity
-@Table
-@Inheritance(strategy=InheritanceType.JOINED)
+@Table(name = "orderline")
+@Inheritance(strategy = InheritanceType.JOINED)
 public final class OrderLine extends BaseEntity {
 
 	private String orderId;
@@ -17,12 +18,13 @@ public final class OrderLine extends BaseEntity {
 	private String itemId;
 	private String comments;
 	private int quantity;
-	
+
 	public OrderLine(String entityKey) {
 		super(entityKey);
 	}
-	
-	public OrderLine() {}
+
+	public OrderLine() {
+	}
 
 	public String getOrderId() {
 		return orderId;
@@ -65,8 +67,12 @@ public final class OrderLine extends BaseEntity {
 	}
 
 	@Override
-	public void fromJSON(JSONObject jsonSource) {
-		
+	public void fromJSON(JSONObject jsonSource) throws JSONException {
+		this.setBasicJsonData(jsonSource);
+		this.orderId = jsonSource.getString("orderId");
+		this.customerId = jsonSource.getString("customerId");
+		this.itemId = jsonSource.getString("itemId");
+		this.comments = jsonSource.getString("comments");
+		this.quantity = jsonSource.getInt("quantity");
 	}
-
 }

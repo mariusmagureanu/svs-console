@@ -15,11 +15,19 @@ public abstract class BaseDao<T extends IBaseEntity> implements IBaseDao<T> {
 	protected SessionFactory sessionFactory;
 	private Class<T> entityType;
 
+	/**
+	 * 
+	 * @param sessionFactory
+	 * @param clazz
+	 */
 	protected BaseDao(final SessionFactory sessionFactory, final Class<T> clazz) {
 		this.sessionFactory = sessionFactory;
 		this.entityType = clazz;
 	}
 
+	/**
+	 * 
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public T getByKey(String entityKey) {
@@ -36,6 +44,9 @@ public abstract class BaseDao<T extends IBaseEntity> implements IBaseDao<T> {
 		return t;
 	}
 
+	/**
+	 * 
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public T getById(int entityId) {
@@ -51,6 +62,9 @@ public abstract class BaseDao<T extends IBaseEntity> implements IBaseDao<T> {
 		return t;
 	}
 
+	/**
+	 * 
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public ArrayList<T> getAll() {
@@ -65,6 +79,9 @@ public abstract class BaseDao<T extends IBaseEntity> implements IBaseDao<T> {
 		return list;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public boolean update(T entity) {
 		final Session session = this.sessionFactory.openSession();
@@ -75,6 +92,9 @@ public abstract class BaseDao<T extends IBaseEntity> implements IBaseDao<T> {
 		return true;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public boolean deleteEntity(T entity) {
 		final Session session = this.sessionFactory.openSession();
@@ -85,6 +105,9 @@ public abstract class BaseDao<T extends IBaseEntity> implements IBaseDao<T> {
 		return true;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public boolean saveEntity(T entity) {
 		final Session session = this.sessionFactory.openSession();
@@ -99,7 +122,7 @@ public abstract class BaseDao<T extends IBaseEntity> implements IBaseDao<T> {
 	public void clearAll() {
 		final Session session = this.sessionFactory.openSession();
 		session.beginTransaction();
-		final String deleteQuery = String.format("delete from %s",this.entityType.getName());
+		final String deleteQuery = String.format("delete from %s",this.entityType.getSimpleName());
 		session.createQuery(deleteQuery).executeUpdate();
 		session.getTransaction().commit();
 		session.close();

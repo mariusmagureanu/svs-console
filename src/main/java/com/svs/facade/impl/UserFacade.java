@@ -9,7 +9,7 @@ import com.svs.dao.interfaces.IUserDao;
 import com.svs.entities.User;
 import com.svs.facade.interfaces.IUserFacade;
 
-public class UserFacade extends BaseFacade<User> implements IUserFacade {
+public final class UserFacade extends BaseFacade<User> implements IUserFacade {
 
 	private final IUserDao userDao = DaoFactory.getInstance().getDaoFactory()
 			.getUserDao();
