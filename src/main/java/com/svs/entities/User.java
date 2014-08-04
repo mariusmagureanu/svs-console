@@ -1,5 +1,6 @@
 package com.svs.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -13,9 +14,16 @@ import org.json.JSONObject;
 @Inheritance(strategy = InheritanceType.JOINED)
 public final class User extends BaseEntity {
 
+	@Column(name="FirstName")
 	private String firstName;
+	
+	@Column(name="LastName")
 	private String lastName;
+	
+	@Column(name="UserName")
 	private String userName;
+	
+	@Column(name="Password")
 	private String password;
 
 	public User(String entityKey) {

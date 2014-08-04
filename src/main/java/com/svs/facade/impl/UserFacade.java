@@ -1,5 +1,7 @@
 package com.svs.facade.impl;
 
+import java.util.HashMap;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,7 +17,15 @@ public final class UserFacade extends BaseFacade<User> implements IUserFacade {
 			.getUserDao();
 
 	@Override
-	public boolean isValidUser(String username, String password) {
+	public boolean isValidUser(final String username, final String password) {
+		final HashMap<String, String> fieldMap = new HashMap<String, String>();
+        fieldMap.put("userName", username);
+        fieldMap.put("password", password);
+        
+		final User user = this.userDao.getByFields(fieldMap);
+		if (user != null) {
+			return user.getUserName().equals(username);
+		}
 		return false;
 	}
 

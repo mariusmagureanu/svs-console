@@ -9,6 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+import com.svs.guice.ServiceInjector;
+
 public abstract class BaseFilter implements Filter {
 
 	public abstract boolean filterIncomingRequest(ServletRequest request,
@@ -19,8 +21,7 @@ public abstract class BaseFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		// TODO Auto-generated method stub
-		filterConfig.toString();
+		ServiceInjector.getInjector().injectMembers(this);
 	}
 
 	@Override

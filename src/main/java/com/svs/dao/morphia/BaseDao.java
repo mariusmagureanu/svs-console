@@ -1,6 +1,7 @@
 package com.svs.dao.morphia;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.google.code.morphia.Morphia;
 import com.google.code.morphia.dao.BasicDAO;
@@ -53,5 +54,17 @@ public abstract class BaseDao<T extends IBaseEntity, K> extends BasicDAO<T, K>
 	@Override
 	public void clearAll() {
 
+	}
+
+	@Override
+	public T getByFields(HashMap<String, String> fields) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<T> getAllByFields(HashMap<String, String> fields) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
