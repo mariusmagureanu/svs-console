@@ -1,6 +1,7 @@
 package com.svs.dao.mysql;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -126,5 +127,17 @@ public abstract class BaseDao<T extends IBaseEntity> implements IBaseDao<T> {
 		session.createQuery(deleteQuery).executeUpdate();
 		session.getTransaction().commit();
 		session.close();
+	}
+
+	@Override
+	public T getByFields(HashMap<String, String> fields) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<T> getAllByFields(HashMap<String, String> fields) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
